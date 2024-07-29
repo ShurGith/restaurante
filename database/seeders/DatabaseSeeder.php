@@ -22,12 +22,14 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Susan',
             'email' => 'susan@example.com',
+            'password' => bcrypt(123456),
             'role' => Role::Frontline,
         ]);
 
         User::factory()->create([
             'name' => 'John',
             'email' => 'john@example.com',
+            'password' => bcrypt(123456),
             'role' => Role::Kitchen,
         ]);
 
