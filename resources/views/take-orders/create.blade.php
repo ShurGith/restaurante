@@ -7,20 +7,20 @@
 
     <div class="pt-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
         <select>
-            <option value="">Mesa 1</option>
-            <option value="">Mesa 2</option>
-            <option value="">Mesa 3</option>
+            <option>Mesa 1</option>
+            <option>Mesa 2</option>
+            <option>Mesa 3</option>
         </select>
     </div>
 
-    <div class="pt-6">
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
 
                     <div class="grid grid-cols-6 gap-5">
-                        <div class="bg-indigo-100 p-5 rounded shadow-md">
+                        <div class="p-5 bg-indigo-100 rounded shadow-md">
                             <div class="font-bold">Item 1</div>
                             <div>$ 4.75</div>
                             <div>
@@ -28,7 +28,7 @@
                                 <button class="bg-blue-950 text-white px-5 rounded">-</button>
                             </div>
                         </div>
-                        <div class="bg-indigo-100 p-5 rounded shadow-md">
+                        <div class="p-5 bg-indigo-100 rounded shadow-md">
                             <div class="font-bold">Item 2</div>
                             <div>$ 4.75</div>
                             <div>
@@ -36,7 +36,7 @@
                                 <button class="bg-blue-950 text-white px-5 rounded">-</button>
                             </div>
                         </div>
-                        <div class="bg-indigo-100 p-5 rounded shadow-md">
+                        <div class="p-5 bg-indigo-100 rounded shadow-md">
                             <div class="font-bold">Item 3</div>
                             <div>$ 4.75</div>
                             <div>
@@ -44,7 +44,7 @@
                                 <button class="bg-blue-950 text-white px-5 rounded">-</button>
                             </div>
                         </div>
-                        <div class="bg-indigo-100 p-5 rounded shadow-md">
+                        <div class="p-5 bg-indigo-100 rounded shadow-md">
                             <div class="font-bold">Item 4</div>
                             <div>$ 4.75</div>
                             <div>
@@ -52,7 +52,7 @@
                                 <button class="bg-blue-950 text-white px-5 rounded">-</button>
                             </div>
                         </div>
-                        <div class="bg-indigo-100 p-5 rounded shadow-md">
+                        <div class="p-5 bg-indigo-100 rounded shadow-md">
                             <div class="font-bold">Item 5</div>
                             <div>$ 4.75</div>
                             <div>
@@ -60,7 +60,7 @@
                                 <button class="bg-blue-950 text-white px-5 rounded">-</button>
                             </div>
                         </div>
-                        <div class="bg-indigo-100 p-5 rounded shadow-md">
+                        <div class="p-5 bg-indigo-100 rounded shadow-md">
                             <div class="font-bold">Item 6</div>
                             <div>$ 4.75</div>
                             <div>
@@ -68,7 +68,7 @@
                                 <button class="bg-blue-950 text-white px-5 rounded">-</button>
                             </div>
                         </div>
-                        <div class="bg-indigo-100 p-5 rounded shadow-md">
+                        <div class="p-5 bg-indigo-100 rounded shadow-md">
                             <div class="font-bold">Item 7</div>
                             <div>$ 4.75</div>
                             <div>
@@ -84,7 +84,7 @@
         </div>
     </div>
 
-    <div class="pt-6">
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -98,24 +98,25 @@
                         </div>
 
                         <div class="grid grid-cols-4">
-                            <div>Hanbuguesa sencilla</div>
-                            <div class="text-center">$ 4.75</div>
+                            <div>Hamburguesa con queso</div>
+                            <div class="text-center">$6.50</div>
                             <div class="text-center">2</div>
+                            <div class="text-center">
+                               <button class="bg-blue-950 text-white px-5 rounded">+</button>
+                               <button class="bg-blue-950 text-white px-5 rounded">-</button>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-4">
+                            <div>Hamburguesa sencilla</div>
+                            <div class="text-center">$4.50</div>
+                            <div class="text-center">3</div>
                             <div class="text-center">
                                 <button class="bg-blue-950 text-white px-5 rounded">+</button>
                                 <button class="bg-blue-950 text-white px-5 rounded">-</button>
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-4">
-                            <div>Hanbuguesa sencilla</div>
-                            <div class="text-center">$ 4.75</div>
-                            <div class="text-center">2</div>
-                            <div class="text-center">
-                                <button class="bg-blue-950 text-white px-5 rounded">+</button>
-                                <button class="bg-blue-950 text-white px-5 rounded">-</button>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
