@@ -6,10 +6,10 @@
     </x-slot>
 
     <div class="pt-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <select>
-            <option>Mesa 1</option>
-            <option>Mesa 2</option>
-            <option>Mesa 3</option>
+        <select onchange="window.location.href = '/orders/take/tables/' + this.value;">
+            @foreach ($tables as $table)
+                <option value="{{ $table->id }}" {{ $selectedTable->id == $table->id ? 'selected' : '' }}>{{ $table->name }}</option>
+            @endforeach
         </select>
     </div>
 
