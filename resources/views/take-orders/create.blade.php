@@ -13,7 +13,7 @@
         </select>
     </div>
 
-    <div x-data="{ menuEntries: {{ $menuEntries->toJson() }} }">
+    <div x-data="takeOrders">
         <div class="py-6">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -28,8 +28,7 @@
                                     <div class="text-sm text-gray-600" x-text="entry.description"></div>
                                     <div x-text="'$' + entry.price/100"></div>
                                     <div>
-                                        <button class="bg-blue-950 text-white px-5 rounded">+</button>
-                                        <button class="bg-blue-950 text-white px-5 rounded">-</button>
+                                        <button @click="addToOrder(entry, 1)" class="bg-blue-950 text-white px-5 rounded">Añadir</button>
                                     </div>
                                 </div>
                             </template>
@@ -54,25 +53,17 @@
                                 <div class="text-center">Acciones</div>
                             </div>
 
-                            <div class="grid grid-cols-4">
-                                <div>Hamburguesa con queso</div>
-                                <div class="text-center">$6.50</div>
-                                <div class="text-center">2</div>
-                                <div class="text-center">
-                                   <button class="bg-blue-950 text-white px-5 rounded">+</button>
-                                   <button class="bg-blue-950 text-white px-5 rounded">-</button>
+                            <template x-for="order in selectedTable.orders">
+                                <div class="grid grid-cols-4">
+                                    <div x-text="order.menu_entry.name"></div>
+                                    <div class="text-center" x-text="'$' + order.menu_entry.price/100"></div>
+                                    <div class="text-center" x-text="order.quantity"></div>
+                                    <div class="text-center">
+                                       <button class="bg-blue-950 text-white px-5 rounded">+</button>
+                                       <button class="bg-blue-950 text-white px-5 rounded">-</button>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="grid grid-cols-4">
-                                <div>Hamburguesa sencilla</div>
-                                <div class="text-center">$4.50</div>
-                                <div class="text-center">3</div>
-                                <div class="text-center">
-                                    <button class="bg-blue-950 text-white px-5 rounded">+</button>
-                                    <button class="bg-blue-950 text-white px-5 rounded">-</button>
-                                </div>
-                            </div>
+                            </template>
 
                         </div>
 
@@ -81,4 +72,22 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('takeOrders', () => ({
+
+                menuEntries: {!! $menuEntries->toJson() !!},
+                selectedTable: {!! $selectedTable->toJson() !!},
+
+                addToOrder(entry, quantity) {
+                    axios.post('/orders/take/tables/' + this.selectedTable.id, {
+                        menu_entry_id: entry.id,
+                        quantity: quantity,
+                    })
+                },
+
+            }))
+        })
+    </script>
 </x-app-layout>

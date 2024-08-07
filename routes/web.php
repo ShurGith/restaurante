@@ -15,6 +15,8 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/orders/take/tables/{table}', [TakeOrdersController::class, 'create']);
+    Route::post('/orders/take/tables/{table}', [TakeOrdersController::class, 'store']);
+
     Route::get('/orders/kitchen', [KitchenOrdersController::class, 'index']);
 });
 
