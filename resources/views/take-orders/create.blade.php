@@ -13,112 +13,70 @@
         </select>
     </div>
 
-    <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+    <div x-data="{ menuEntries: {{ $menuEntries->toJson() }} }">
+        <div class="py-6">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
 
 
-                    <div class="grid grid-cols-6 gap-5">
-                        <div class="p-5 bg-indigo-100 rounded shadow-md">
-                            <div class="font-bold">Item 1</div>
-                            <div>$ 4.75</div>
-                            <div>
-                                <button class="bg-blue-950 text-white px-5 rounded">+</button>
-                                <button class="bg-blue-950 text-white px-5 rounded">-</button>
-                            </div>
+                        <div class="grid grid-cols-6 gap-5">
+
+                            <template x-for="entry in menuEntries">
+                                <div class="p-5 bg-indigo-100 rounded shadow-md">
+                                    <div class="font-bold" x-text="entry.name"></div>
+                                    <div class="text-sm text-gray-600" x-text="entry.description"></div>
+                                    <div x-text="'$' + entry.price/100"></div>
+                                    <div>
+                                        <button class="bg-blue-950 text-white px-5 rounded">+</button>
+                                        <button class="bg-blue-950 text-white px-5 rounded">-</button>
+                                    </div>
+                                </div>
+                            </template>
                         </div>
-                        <div class="p-5 bg-indigo-100 rounded shadow-md">
-                            <div class="font-bold">Item 2</div>
-                            <div>$ 4.75</div>
-                            <div>
-                                <button class="bg-blue-950 text-white px-5 rounded">+</button>
-                                <button class="bg-blue-950 text-white px-5 rounded">-</button>
-                            </div>
-                        </div>
-                        <div class="p-5 bg-indigo-100 rounded shadow-md">
-                            <div class="font-bold">Item 3</div>
-                            <div>$ 4.75</div>
-                            <div>
-                                <button class="bg-blue-950 text-white px-5 rounded">+</button>
-                                <button class="bg-blue-950 text-white px-5 rounded">-</button>
-                            </div>
-                        </div>
-                        <div class="p-5 bg-indigo-100 rounded shadow-md">
-                            <div class="font-bold">Item 4</div>
-                            <div>$ 4.75</div>
-                            <div>
-                                <button class="bg-blue-950 text-white px-5 rounded">+</button>
-                                <button class="bg-blue-950 text-white px-5 rounded">-</button>
-                            </div>
-                        </div>
-                        <div class="p-5 bg-indigo-100 rounded shadow-md">
-                            <div class="font-bold">Item 5</div>
-                            <div>$ 4.75</div>
-                            <div>
-                                <button class="bg-blue-950 text-white px-5 rounded">+</button>
-                                <button class="bg-blue-950 text-white px-5 rounded">-</button>
-                            </div>
-                        </div>
-                        <div class="p-5 bg-indigo-100 rounded shadow-md">
-                            <div class="font-bold">Item 6</div>
-                            <div>$ 4.75</div>
-                            <div>
-                                <button class="bg-blue-950 text-white px-5 rounded">+</button>
-                                <button class="bg-blue-950 text-white px-5 rounded">-</button>
-                            </div>
-                        </div>
-                        <div class="p-5 bg-indigo-100 rounded shadow-md">
-                            <div class="font-bold">Item 7</div>
-                            <div>$ 4.75</div>
-                            <div>
-                                <button class="bg-blue-950 text-white px-5 rounded">+</button>
-                                <button class="bg-blue-950 text-white px-5 rounded">-</button>
-                            </div>
-                        </div>
+
+
                     </div>
-
-
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+        <div class="py-6">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
 
-                    <div class="space-y-2">
-                        <div class="grid grid-cols-4 font-bold">
-                            <div>Descripción</div>
-                            <div class="text-center">Precio</div>
-                            <div class="text-center">Cantidad</div>
-                            <div class="text-center">Acciones</div>
-                        </div>
-
-                        <div class="grid grid-cols-4">
-                            <div>Hamburguesa con queso</div>
-                            <div class="text-center">$6.50</div>
-                            <div class="text-center">2</div>
-                            <div class="text-center">
-                               <button class="bg-blue-950 text-white px-5 rounded">+</button>
-                               <button class="bg-blue-950 text-white px-5 rounded">-</button>
+                        <div class="space-y-2">
+                            <div class="grid grid-cols-4 font-bold">
+                                <div>Descripción</div>
+                                <div class="text-center">Precio</div>
+                                <div class="text-center">Cantidad</div>
+                                <div class="text-center">Acciones</div>
                             </div>
-                        </div>
 
-                        <div class="grid grid-cols-4">
-                            <div>Hamburguesa sencilla</div>
-                            <div class="text-center">$4.50</div>
-                            <div class="text-center">3</div>
-                            <div class="text-center">
-                                <button class="bg-blue-950 text-white px-5 rounded">+</button>
-                                <button class="bg-blue-950 text-white px-5 rounded">-</button>
+                            <div class="grid grid-cols-4">
+                                <div>Hamburguesa con queso</div>
+                                <div class="text-center">$6.50</div>
+                                <div class="text-center">2</div>
+                                <div class="text-center">
+                                   <button class="bg-blue-950 text-white px-5 rounded">+</button>
+                                   <button class="bg-blue-950 text-white px-5 rounded">-</button>
+                                </div>
                             </div>
+
+                            <div class="grid grid-cols-4">
+                                <div>Hamburguesa sencilla</div>
+                                <div class="text-center">$4.50</div>
+                                <div class="text-center">3</div>
+                                <div class="text-center">
+                                    <button class="bg-blue-950 text-white px-5 rounded">+</button>
+                                    <button class="bg-blue-950 text-white px-5 rounded">-</button>
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
-
                 </div>
             </div>
         </div>

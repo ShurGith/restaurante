@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MenuEntry;
 use App\Models\Table;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,7 @@ class TakeOrdersController extends Controller
         return view('take-orders.create', [
             'tables' => Table::get(),
             'selectedTable' => $table,
+            'menuEntries' => MenuEntry::get(),
         ]);
     }
 }
