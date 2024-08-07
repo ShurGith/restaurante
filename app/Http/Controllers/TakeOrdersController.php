@@ -28,6 +28,19 @@ class TakeOrdersController extends Controller
             'status' => 'pending',
         ]);
 
+        return $order->load('menuEntry');
+    }
+
+    public function update(Order $order, Request $request)
+    {
+        $order->update([
+            'quantity' => $request->input('quantity'),
+        ]);
+
+        if($order->quantity <= 0) {
+            $order->delete();
+        }
+
         return $order;
     }
 }
