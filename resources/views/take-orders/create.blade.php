@@ -48,18 +48,23 @@
                     <div class="p-6 text-gray-900 dark:text-gray-100">
 
                         <div class="space-y-2">
-                            <div class="grid grid-cols-4 font-bold">
+                            <div class="grid grid-cols-5 font-bold">
                                 <div>Descripción</div>
                                 <div class="text-center">Precio</div>
                                 <div class="text-center">Cantidad</div>
+                                <div class="text-center">Notas</div>
                                 <div class="text-center">Acciones</div>
                             </div>
 
                             <template x-for="order in selectedTable.orders" :key="order.id">
-                                <div class="grid grid-cols-4">
+                                <div class="grid grid-cols-5">
                                     <div x-text="order.menu_entry.name"></div>
                                     <div class="text-center" x-text="'$' + order.menu_entry.price/100"></div>
                                     <div class="text-center" x-text="order.quantity"></div>
+                                    <div>
+                                        <textarea x-model="order.notes"></textarea>
+                                        <button @click="updateOrder(order, {notes: order.notes})" class="bg-blue-950 text-white px-5 rounded">Actualizar</button>
+                                    </div>
                                     <div class="text-center">
                                        <button @click="updateOrder(order, {quantity: order.quantity + 1})" class="bg-blue-950 text-white px-5 rounded">+</button>
                                        <button @click="updateOrder(order, {quantity: order.quantity - 1})" class="bg-blue-950 text-white px-5 rounded">-</button>

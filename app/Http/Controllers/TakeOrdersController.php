@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\OrderStatus;
 use App\Models\Order;
 use App\Models\Table;
 use App\Models\MenuEntry;
@@ -25,7 +26,7 @@ class TakeOrdersController extends Controller
             'menu_entry_id' => $request->input('menu_entry_id'),
             'quantity' => $request->input('quantity'),
             'notes' => '',
-            'status' => 'pending',
+            'status' => OrderStatus::Pending,
         ]);
 
         return $order->load('menuEntry');
@@ -34,7 +35,8 @@ class TakeOrdersController extends Controller
     public function update(Order $order, Request $request)
     {
         $order->update([
-            'quantity' => $request->input('quantity'),
+            'quantity' => $request->input('quantity', $order->quantity),
+            'notes' => $request->input('notes', $order->notes),
         ]);
 
         if($order->quantity <= 0) {
