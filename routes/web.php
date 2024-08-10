@@ -1,6 +1,8 @@
 <?php
 
+use App\Enums\Role;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TakeOrdersController;
 use App\Http\Controllers\KitchenOrdersController;
@@ -14,11 +16,17 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/orders/take/tables/{table}', [TakeOrdersController::class, 'create']);
-    Route::post('/orders/take/tables/{table}', [TakeOrdersController::class, 'store']);
-    Route::put('/orders/{order}', [TakeOrdersController::class, 'update']);
 
-    Route::get('/orders/kitchen', [KitchenOrdersController::class, 'index']);
+    Route::middleware(RoleMiddleware::class . ':' . Role::Frontline->value)->group(function () {
+        Route::get('/orders/take/tables/{table}', [TakeOrdersController::class, 'create']);
+        Route::post('/orders/take/tables/{table}', [TakeOrdersController::class, 'store']);
+        Route::put('/orders/{order}', [TakeOrdersController::class, 'update']);
+    });
+
+    Route::middleware(RoleMiddleware::class . ':' . Role::Kitchen->value)->group(function () {
+        Route::get('/orders/kitchen', [KitchenOrdersController::class, 'index']);
+
+    });
 });
 
 
