@@ -5,88 +5,120 @@
         </h2>
     </x-slot>
 
-    <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+    <div x-data="kitchen">
+        <div class="py-6">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
 
-                    <div class="space-y-2">
-                        <div class="grid grid-cols-5 font-bold">
-                            <div>Descripción</div>
-                            <div class="text-center">Notas</div>
-                            <div class="text-center">Cantidad</div>
-                            <div class="text-center">Mesa</div>
-                            <div class="text-center">Acciones</div>
-                        </div>
-
-                        <div class="grid grid-cols-5">
-                            <div>Hamburguesa con queso</div>
-                            <div class="text-center">Sin salsa de tomate</div>
-                            <div class="text-center">2</div>
-                            <div class="text-center">Mesa 2</div>
-                            <div class="text-center">
-                               <button class="bg-blue-950 text-white px-5 rounded">Listo</button>
+                        <div class="space-y-2">
+                            <div class="grid grid-cols-5 font-bold">
+                                <div>Descripción</div>
+                                <div class="text-center">Notas</div>
+                                <div class="text-center">Cantidad</div>
+                                <div class="text-center">Mesa</div>
+                                <div class="text-center">Acciones</div>
                             </div>
-                        </div>
 
-                        <div class="grid grid-cols-5">
-                            <div>Hamburguesa sencilla</div>
-                            <div class="text-center">Sin cebolla</div>
-                            <div class="text-center">3</div>
-                            <div class="text-center">Mesa 7</div>
-                            <div class="text-center">
-                                <button class="bg-blue-950 text-white px-5 rounded">Listo</button>
-                            </div>
+                            <template x-for="order in pendingOrders" :key="order.id">
+                                <div class="grid grid-cols-5">
+                                    <div x-text="order.menu_entry.name"></div>
+                                    <div class="text-center" x-text="order.notes"></div>
+                                    <div class="text-center" x-text="order.quantity"></div>
+                                    <div class="text-center" x-text="order.table.name"></div>
+                                    <div class="text-center">
+                                       <button class="bg-blue-950 text-white px-5 rounded">Listo</button>
+                                    </div>
+                                </div>
+                            </template>
+
                         </div>
 
                     </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <h2 class="font-bold text-lg">Ordenes en preparación</h2>
+        </div>
+        <div class="py-6">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                        <div class="space-y-2">
+                            <div class="grid grid-cols-5 font-bold">
+                                <div>Descripción</div>
+                                <div class="text-center">Notas</div>
+                                <div class="text-center">Cantidad</div>
+                                <div class="text-center">Mesa</div>
+                                <div class="text-center">Acciones</div>
+                            </div>
+
+                            <template x-for="order in preparingOrders" :key="order.id">
+                                <div class="grid grid-cols-5">
+                                    <div x-text="order.menu_entry.name"></div>
+                                    <div class="text-center" x-text="order.notes"></div>
+                                    <div class="text-center" x-text="order.quantity"></div>
+                                    <div class="text-center" x-text="order.table.name"></div>
+                                    <div class="text-center">
+                                       <button class="bg-blue-950 text-white px-5 rounded">Listo</button>
+                                    </div>
+                                </div>
+                            </template>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <h2 class="font-bold text-lg">Últimos pedidos atendidos</h2>
+        </div>
+        <div class="py-2">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                        <div class="space-y-2">
+                            <div class="grid grid-cols-5 font-bold">
+                                <div>Descripción</div>
+                                <div class="text-center">Notas</div>
+                                <div class="text-center">Cantidad</div>
+                                <div class="text-center">Mesa</div>
+                                <div class="text-center"></div>
+                            </div>
+
+                            <template x-for="order in completedOrders" :key="order.id">
+                                <div class="grid grid-cols-5">
+                                    <div x-text="order.menu_entry.name"></div>
+                                    <div class="text-center" x-text="order.notes">Sin salsa de tomate</div>
+                                    <div class="text-center" x-text="order.quantity">2</div>
+                                    <div class="text-center" x-text="order.table.name">Mesa 2</div>
+                                    <div class="text-center">
+                                       ✅
+                                    </div>
+                                </div>
+                            </template>
+
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <h2 class="font-bold text-lg">Últimos pedidos atendidos</h2>
-    </div>
-    <div class="py-2">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-
-                    <div class="space-y-2">
-                        <div class="grid grid-cols-5 font-bold">
-                            <div>Descripción</div>
-                            <div class="text-center">Notas</div>
-                            <div class="text-center">Cantidad</div>
-                            <div class="text-center">Mesa</div>
-                            <div class="text-center"></div>
-                        </div>
-
-                        <div class="grid grid-cols-5">
-                            <div>Hamburguesa con queso</div>
-                            <div class="text-center">Sin salsa de tomate</div>
-                            <div class="text-center">2</div>
-                            <div class="text-center">Mesa 2</div>
-                            <div class="text-center">
-                               ✅
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-5">
-                            <div>Hamburguesa sencilla</div>
-                            <div class="text-center">Sin cebolla</div>
-                            <div class="text-center">3</div>
-                            <div class="text-center">Mesa 7</div>
-                            <div class="text-center">
-                                ✅
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('kitchen', () => ({
+                pendingOrders: {!! $pendingOrders->toJson() !!},
+                preparingOrders: {!! $preparingOrders->toJson() !!},
+                completedOrders: {!! $completedOrders->toJson() !!},
+            }));
+        });
+    </script>
 </x-app-layout>

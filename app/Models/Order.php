@@ -15,4 +15,9 @@ class Order extends Model
     {
         return $this->belongsTo(MenuEntry::class);
     }
+
+    public function table()
+    {
+        return $this->belongsTo(Table::class);
+    }
 }
