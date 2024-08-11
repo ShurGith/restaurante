@@ -6,6 +6,7 @@ use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TakeOrdersController;
 use App\Http\Controllers\KitchenOrdersController;
+use App\Http\Controllers\UpdateOrdersStatusController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,7 +26,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware(RoleMiddleware::class . ':' . Role::Kitchen->value)->group(function () {
         Route::get('/orders/kitchen', [KitchenOrdersController::class, 'index']);
-
+        Route::put('/update-orders-status/{order}', [UpdateOrdersStatusController::class, 'update']);
     });
 });
 

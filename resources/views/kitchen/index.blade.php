@@ -27,7 +27,7 @@
                                     <div class="text-center" x-text="order.quantity"></div>
                                     <div class="text-center" x-text="order.table.name"></div>
                                     <div class="text-center">
-                                       <button class="bg-blue-950 text-white px-5 rounded">Listo</button>
+                                       <button @click="updateOrderToPreparing(order)" class="bg-blue-950 text-white px-5 rounded">Preparar</button>
                                     </div>
                                 </div>
                             </template>
@@ -63,7 +63,7 @@
                                     <div class="text-center" x-text="order.quantity"></div>
                                     <div class="text-center" x-text="order.table.name"></div>
                                     <div class="text-center">
-                                       <button class="bg-blue-950 text-white px-5 rounded">Listo</button>
+                                       <button @click="updateOrderToCompleted(order)" class="bg-blue-950 text-white px-5 rounded">Listo</button>
                                     </div>
                                 </div>
                             </template>
@@ -118,6 +118,28 @@
                 pendingOrders: {!! $pendingOrders->toJson() !!},
                 preparingOrders: {!! $preparingOrders->toJson() !!},
                 completedOrders: {!! $completedOrders->toJson() !!},
+
+                updateOrderToPreparing(order) {
+                    this.updateStatusOrder(order, {status: 'preparing'})
+                        .then(response => {
+                             let index = this.pendingOrders.findIndex(pendingOrder => pendingOrder.id == order.id);
+                            this.pendingOrders.splice(index, 1);
+                            this.preparingOrders.push(response.data);
+                        });
+                },
+
+                updateOrderToCompleted(order) {
+                    this.updateStatusOrder(order, {status: 'completed'})
+                        .then(response => {
+                            let index = this.preparingOrders.findIndex(preparingOrder => preparingOrder.id == order.id);
+                            this.preparingOrders.splice(index, 1);
+                            this.completedOrders.push(response.data);
+                        });
+                },
+
+                updateStatusOrder(order, data) {
+                    return axios.put('/update-orders-status/' + order.id, data)
+                }
             }));
         });
     </script>
