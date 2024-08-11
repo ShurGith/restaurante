@@ -8,12 +8,18 @@ use Illuminate\Http\Request;
 
 class KitchenOrdersController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $pendingOrders = Order::with(['menuEntry', 'table'])
+            ->where('status', OrderStatus::Pending)
+            ->get();
+
+        if ($request->wantsJson()) {
+            return $pendingOrders;
+        }
+
         return view('kitchen.index', [
-            'pendingOrders' => Order::with(['menuEntry', 'table'])
-                ->where('status', OrderStatus::Pending)
-                ->get(),
+            'pendingOrders' => $pendingOrders,
             'preparingOrders' => Order::with(['menuEntry', 'table'])
                 ->where('status', OrderStatus::Preparing)
                 ->get(),

@@ -115,6 +115,16 @@
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('kitchen', () => ({
+
+                init() {
+                    setInterval(() => {
+                        axios.get('/orders/kitchen')
+                            .then(response => {
+                                this.pendingOrders = response.data;
+                            });
+                    }, 3000);
+                },
+
                 pendingOrders: {!! $pendingOrders->toJson() !!},
                 preparingOrders: {!! $preparingOrders->toJson() !!},
                 completedOrders: {!! $completedOrders->toJson() !!},
