@@ -20,7 +20,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
 
     Route::middleware(RoleMiddleware::class . ':' . Role::Frontline->value)->group(function () {
-        Route::get('/orders/take/tables/{table}', [TakeOrdersController::class, 'create']);
+        Route::get('/orders/take/tables/{table?}', [TakeOrdersController::class, 'create']);
         Route::post('/orders/take/tables/{table}', [TakeOrdersController::class, 'store']);
         Route::put('/orders/{order}', [TakeOrdersController::class, 'update']);
         Route::delete('/orders/tables/{table}', [ClearTablesController::class, 'destroy']);

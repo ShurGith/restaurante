@@ -7,6 +7,7 @@
 
     <div class="pt-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
         <select onchange="window.location.href = '/orders/take/tables/' + this.value;">
+            <option value="" {{ $selectedTable->id == null ? 'selected' : '' }}>-- Seleccione mesa --</option>
             @foreach ($tables as $table)
                 <option value="{{ $table->id }}" {{ $selectedTable->id == $table->id ? 'selected' : '' }}>{{ $table->name }}</option>
             @endforeach
