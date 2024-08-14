@@ -78,6 +78,13 @@
                 </div>
             </div>
         </div>
+
+        <div class="py-6">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <button @click="clearTable" class="bg-blue-950 text-white px-5 rounded">Limpiar mesa</button>
+            </div>
+        </div>
+
     </div>
 
     <script>
@@ -111,6 +118,13 @@
                             this.selectedTable.orders.splice(index, 1);
                         }
                     });
+                },
+
+                clearTable() {
+                    axios.delete('/orders/tables/' + this.selectedTable.id)
+                        .then(response => {
+                            this.selectedTable.orders = [];
+                        });
                 },
 
             }))

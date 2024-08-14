@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TakeOrdersController;
+use App\Http\Controllers\ClearTablesController;
 use App\Http\Controllers\KitchenOrdersController;
 use App\Http\Controllers\UpdateOrdersStatusController;
 
@@ -22,6 +23,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/orders/take/tables/{table}', [TakeOrdersController::class, 'create']);
         Route::post('/orders/take/tables/{table}', [TakeOrdersController::class, 'store']);
         Route::put('/orders/{order}', [TakeOrdersController::class, 'update']);
+        Route::delete('/orders/tables/{table}', [ClearTablesController::class, 'destroy']);
     });
 
     Route::middleware(RoleMiddleware::class . ':' . Role::Kitchen->value)->group(function () {
