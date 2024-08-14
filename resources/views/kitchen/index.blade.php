@@ -128,9 +128,10 @@
                 pendingOrders: {!! $pendingOrders->toJson() !!},
                 preparingOrders: {!! $preparingOrders->toJson() !!},
                 completedOrders: {!! $completedOrders->toJson() !!},
+                orderStatus: {!! json_encode($orderStatus) !!},
 
                 updateOrderToPreparing(order) {
-                    this.updateStatusOrder(order, {status: 'preparing'})
+                    this.updateStatusOrder(order, {status: this.orderStatus.Preparing})
                         .then(response => {
                              let index = this.pendingOrders.findIndex(pendingOrder => pendingOrder.id == order.id);
                             this.pendingOrders.splice(index, 1);
@@ -139,7 +140,7 @@
                 },
 
                 updateOrderToCompleted(order) {
-                    this.updateStatusOrder(order, {status: 'completed'})
+                    this.updateStatusOrder(order, {status: this.orderStatus.Completed})
                         .then(response => {
                             let index = this.preparingOrders.findIndex(preparingOrder => preparingOrder.id == order.id);
                             this.preparingOrders.splice(index, 1);

@@ -26,6 +26,7 @@ class KitchenOrdersController extends Controller
             'completedOrders' => Order::with(['menuEntry', 'table'])
                 ->where('status', OrderStatus::Completed)
                 ->get(),
+            'orderStatus' => OrderStatus::toArray(),
         ]);
     }
 }
